@@ -14,11 +14,8 @@ jobs:
       - name: Pull Docker image
         run: docker pull $PI_CI
 
-      - name: Set up Docker Buildx
-        id: buildx
-        uses: docker/setup-buildx-action@v1
-        with:
-          tags: ansible-pi-template
+      - name: Pull Docker image
+        run: docker build -t ansible-pi-template .
 
       - name: Create RASPI_NETWORK
         run: docker network create raspi_network
