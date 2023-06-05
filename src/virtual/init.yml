@@ -11,8 +11,10 @@
       command: init
       state: started
       detach: false
-      tls_hostname: localhost
+      tls_hostname: raspi
       published_ports:
-        - 2222:2222
+        - "{{ docker_raspi_published_ssh_port }}:2222"
+      networks:
+        - name: "{{ docker_raspi_networks }}"
       volumes:
         - "{{ host.dist_dir|default(omit) }}:/dist"

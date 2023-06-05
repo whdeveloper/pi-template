@@ -3,12 +3,14 @@ all:
     local:
       ansible_host: localhost
     raspi:
-      ansible_host: localhost
+      ansible_host: raspi
       ansible_port: 2222
       ansible_ssh_user: root
       ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 
   vars:
+    docker_raspi_published_ssh_port: 2223
+    docker_raspi_networks: raspi_network
     host:
       main_dir: "{{ inventory_dir }}/.."
       dist_dir: "{{ inventory_dir }}/../dist"

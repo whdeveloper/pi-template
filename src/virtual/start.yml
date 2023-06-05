@@ -14,7 +14,9 @@
       state: started
       tls_hostname: localhost
       published_ports:
-        - 2222:2222
+        - "{{ docker_raspi_published_ssh_port }}:2222"
+      networks:
+        - name: "{{ docker_raspi_networks }}"
       volumes:
         - "{{ host.dist_dir|default(omit) }}:/dist"
     register: startup
@@ -24,4 +26,4 @@
   tasks:
   - name: wait for machine startup
     wait_for_connection:
-      timeout: 600
+      timeout: 40
