@@ -26,4 +26,4 @@
   tasks:
   - name: wait for machine startup
     wait_for_connection:
-      timeout: 40
+      timeout: 600
