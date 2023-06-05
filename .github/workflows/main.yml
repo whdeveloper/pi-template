@@ -14,16 +14,17 @@ jobs:
       - name: Pull Docker image
         run: docker pull $PI_CI
 
-      - name: Install dependencies
-        run: |
-          sudo apt-get install ansible
-          pip3 install docker-py
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          tags: ansible-pi-template
 
-      - name: Configure image
-        run: |
-          ansible-playbook \
-          -i inv/ci.yml \
-          src/ci.yml
+      - name: Create RASPI_NETWORK
+        run: docker network create raspi_network
+
+      - name: Pull Docker image
+        run: docker run -it -v /var/run/docker.sock:/var/run/docker.sock --network raspi_network --name $PI_CI ansible-pi-template
 
       - name: Export image
         run: |
