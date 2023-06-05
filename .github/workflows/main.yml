@@ -14,14 +14,14 @@ jobs:
       - name: Pull Docker image
         run: docker pull $PI_CI
 
-      - name: Pull Docker image
+      - name: Build Docker image
         run: docker build -t ansible-pi-template .
 
       - name: Create RASPI_NETWORK
         run: docker network create raspi_network
 
       - name: Pull Docker image
-        run: docker run -v /var/run/docker.sock:/var/run/docker.sock --network raspi_network --name $PI_CI ansible-pi-template
+        run: docker run -v /var/run/docker.sock:/var/run/docker.sock --network raspi_network --name ansible-pi-template
 
       - name: Export image
         run: |
