@@ -24,7 +24,7 @@ jobs:
         run: docker network create raspi_network
 
       - name: Pull Docker image
-        run: docker run -it -v /var/run/docker.sock:/var/run/docker.sock --network raspi_network --name $PI_CI ansible-pi-template
+        run: docker run -v /var/run/docker.sock:/var/run/docker.sock --network raspi_network --name $PI_CI ansible-pi-template
 
       - name: Export image
         run: |
