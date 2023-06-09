@@ -12,9 +12,12 @@ all:
     docker_raspi_published_ssh_port: 2223
     docker_raspi_networks: raspi_network
     host:
-      main_dir: "{{ inventory_dir }}/.."
-      dist_dir: "{{ inventory_dir }}/../dist"
-      data_dir: "{{ inventory_dir }}/../data"
+      main_dir: "./"
+      dist_dir: "./"
+      data_dir: "./"
+#      main_dir: "{{ inventory_dir }}/.."
+#      dist_dir: "{{ inventory_dir }}/../dist"
+#      data_dir: "{{ inventory_dir }}/../data"
       size: 4G
 
     template:
