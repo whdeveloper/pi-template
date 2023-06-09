@@ -28,5 +28,7 @@ WORKDIR /ansible
 COPY ./ansible.cfg /etc/ansible/ansible.cfg
 COPY ./ansible /ansible
 
+VOLUME /dist
+
 # Run Ansible playbook
 CMD ["/ansible/run.sh", "ci"]
