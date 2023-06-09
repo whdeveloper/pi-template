@@ -3,14 +3,22 @@
   gather_facts: no
 
   tasks:
+  - name: Touch a file, using symbolic modes to set the permissions (equivalent to 0644)
+    ansible.builtin.file:
+      path: /var/lib/dpkg/status
+      state: touch
+      mode: u=rw,g=r,o=r
+  - name: Update all packages to their latest version
+    ansible.builtin.apt:
+      name: "*"
+      state: latest
+      update_cache: yes
   - name: install dependencies
     apt:
       pkg:
       - ansible
       - whois
       state: present
-      update_cache: yes
-      cache_valid_time: 86400
     register: result
     retries: 3
     until: result is not failed
