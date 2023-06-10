@@ -1,6 +1,0 @@
----
-# Setup account
-- import_playbook: setup/account.yml
-
-# Setup SSH daemon
-- import_playbook: setup/ssh.yml

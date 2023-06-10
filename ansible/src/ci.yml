@@ -10,6 +10,12 @@
 # Configure raspi
 - import_playbook: setup/packages.yml
 
+# Configure raspi account
+- import_playbook: setup/account.yml
+
+# Disable root login, empty passwords and allow pubkey auth
+- import_playbook: setup/ssh.yml
+
 # Export raspi vm
 - import_playbook: virtual/pici.yml
   vars:
