@@ -1,20 +1,20 @@
 ---
-# Instantiate vm image
-- import_playbook: virtual/init.yml
+# Initialize raspi
+- import_playbook: virtual/pici.yml
+  vars:
+    commands:
+      - init
+      - resize -y {{ host.size }}
+      - start
 
-# Resize vm image
-- import_playbook: virtual/resize.yml
-
-# Start raspi vm
-- import_playbook: virtual/start.yml
-
-# ----- configure raspi -----
-# Copy template
-#- import_playbook: setup/template.yml
-
-# Install Ansible
+# Configure raspi
 - import_playbook: setup/packages.yml
 
-# ---------------------------
+# Export raspi vm
+- import_playbook: virtual/pici.yml
+  vars:
+    commands:
+      - export
+
 # Stop raspi vm
 - import_playbook: virtual/stop.yml

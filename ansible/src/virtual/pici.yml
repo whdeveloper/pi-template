@@ -8,13 +8,14 @@
     docker_container:
       name: raspi
       image: ptrsr/pi-ci
-      command: init
       state: started
       detach: false
+      command: "{{ item }}"
+      volumes:
+        - "{{ host.dist_dir }}:/dist"
       tls_hostname: raspi
       published_ports:
         - "{{ docker_raspi_published_ssh_port }}:2222"
       networks:
         - name: "{{ docker_raspi_networks }}"
-      volumes:
-        - "{{ host.dist_dir|default(omit) }}:/dist"
+    loop: "{{ commands }}"
