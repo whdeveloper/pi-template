@@ -28,7 +28,7 @@ WORKDIR /ansible
 COPY ./ansible.cfg /etc/ansible/ansible.cfg
 COPY ./ansible /ansible
 
-VOLUME /dist
+ENV DIST_DIR=/tmp/dist
 
 # Run Ansible playbook
-CMD ["/ansible/run.sh", "ci"]
+CMD ["/bin/ash", "-c", "/usr/bin/ansible-playbook -vvv -i inv/ci.yml src/ci.yml"]
